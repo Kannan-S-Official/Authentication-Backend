@@ -26,7 +26,6 @@ exports.signup = async (req, res) => {
     res.status(201).json({ message: 'User created successfully' });
   } catch (error) {
     if (error.code === 11000) {
-      // Duplicate key error handling
       return res.status(400).json({ error: 'Email already exists' });
     }
     console.error('Error in signup:', error);
@@ -47,8 +46,6 @@ exports.signin = async (req, res) => {
     if (!validPassword) {
       return res.status(401).json({ error: 'Incorrect password' });
     }
-
-    // Here you can generate a JWT token and send it as a response
     res.status(200).json({ message: 'User signed in successfully' });
   } catch (error) {
     console.error('Error in signin:', error);
